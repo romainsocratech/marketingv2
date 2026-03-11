@@ -512,11 +512,11 @@ footer{
           </div>
           <div class="form-group">
             <label class="form-label">Téléphone</label>
-            <input type="tel" class="form-input" placeholder="+33 6 XX XX XX XX" id="f-phone"/>
+            <input type="tel" name="telephone" class="form-input" placeholder="+33 6 XX XX XX XX">
           </div>
           <div class="form-group">
             <label class="form-label">Contexte / Moment critique</label>
-            <select class="form-select" id="f-context">
+            <select name="contexte" class="form-select"></select>
               <option value="" disabled selected>— Sélectionner —</option>
               <option>Départ d'un expert clé imminent</option>
               <option>Projet de migration en cours</option>
@@ -528,7 +528,7 @@ footer{
           </div>
           <div class="form-group">
             <label class="form-label">Message (optionnel)</label>
-            <input type="text" name="organisation" class="form-input" placeholder="Banque, Assurance">
+            <textarea name="message" class="form-input" placeholder="Décrivez votre situation"></textarea>
           </div>
           <button class="form-submit" type="submit">Envoyer ma demande</button>
           <p class="form-note">Sans engagement · Réponse sous 24h · romainbrubach&#64;socratech.fr</p>
@@ -538,7 +538,7 @@ footer{
           <div class="form-success-title">Message envoyé !</div>
           <p class="form-success-text">Merci pour votre message. L'équipe Socratech vous répondra sous 24h ouvrées.<br/><br/>En attendant, lancez le diagnostic gratuit :</p>
           <br/>
-          <a href="https://romainsocratech.github.io/RUN-RISK-DIAGNOSTIC/" class="btn-primary" target="_blank">→ Commencer le diagnostic</a>
+          href="https://romainsocratech.github.io/RUN-RISK-V2/"
         </div>
       </div>
     </div>
