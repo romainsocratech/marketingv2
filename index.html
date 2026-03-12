@@ -247,7 +247,7 @@ section{position:relative;z-index:1;padding:100px 48px;}
 /* ENGAGEMENTS */
 .engagements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px;}
 .engagement{background:var(--surface);padding:32px;}
-.engagement-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--border);margin-bottom:16px;}
+.engagement-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--accent);opacity:0.4;margin-bottom:16px;}
 .engagement-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:8px;}
 .engagement-text{font-size:11px;color:var(--muted);line-height:1.6;}
 
@@ -288,9 +288,7 @@ footer{
       <div class="nav-contact">romainbrubach&#64;socratech.fr &nbsp;·&nbsp; 06 46 38 21 05</div>
     </div>
   </div>
-  <a href="https://romainsocratech.github.io/runriskv2/" class="nav-cta" target="_blank">Commencer le diagnostic</a>
-Commencer le diagnostic
-</a>
+  <a href="https://romainsocratech.github.io/runriskv3/" class="nav-cta" target="_blank">→ Commencer le diagnostic</a>
 </nav>
 
 <!-- HERO -->
@@ -301,13 +299,8 @@ Commencer le diagnostic
     <p class="hero-sub">
       Avant de transformer, <strong>stabilisez.</strong><br/>
       Mesurez votre exposition au risque opérationnel sur vos systèmes de production — en 5 minutes, sans mobiliser vos équipes.
-    <a href="https://romainsocratech.github.io/runriskv2/" class="btn-primary" target="_blank">Commencer le diagnostic</a>
-Commencer le diagnostic
-</a>
-    <div class="hero-actions">
-      href="https://romainsocratech.github.io/runriskv2/" class="btn-primary"
-      <a href="#contact" class="btn-ghost">Parler à un expert</a>
-    </div>
+    </p>
+    
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="hero-stat-val">&lt; 3</span>
@@ -512,27 +505,27 @@ Commencer le diagnostic
           </div>
           <div class="form-group">
             <label class="form-label">Email professionnel <span>*</span></label>
-            <input type="email" name="email" class="form-input" placeholder="j.dupont@organisation.fr">
+            <input type="email" class="form-input" placeholder="j.dupont&#64;organisation.fr" id="f-email"/>
           </div>
           <div class="form-group">
             <label class="form-label">Téléphone</label>
-            <input type="tel" name="telephone" class="form-input" placeholder="+33 6 XX XX XX XX">
+            <input type="tel" class="form-input" placeholder="+33 6 XX XX XX XX" id="f-phone"/>
           </div>
           <div class="form-group">
             <label class="form-label">Contexte / Moment critique</label>
-            <select name="contexte" class="form-select" id="f-context">
+            <select class="form-select" id="f-context">
               <option value="" disabled selected>— Sélectionner —</option>
-             <option value="expert">Départ d’un expert clé imminent</option>
-<option value="migration">Projet de migration en cours</option>
-<option value="audit">Audit réglementaire prévu</option>
-<option value="incidents">Incidents récurrents en production</option>
-<option value="bilan">Bilan RUN annuel</option>
-<option value="autre">Autre</option>
+              <option>Départ d'un expert clé imminent</option>
+              <option>Projet de migration en cours</option>
+              <option>Audit réglementaire prévu</option>
+              <option>Incidents récurrents en production</option>
+              <option>Bilan RUN annuel</option>
+              <option>Autre</option>
             </select>
           </div>
           <div class="form-group">
             <label class="form-label">Message (optionnel)</label>
-            <textarea name="message" class="form-input" placeholder="Votre message (optionnel)"></textarea>
+            <input type="text" name="organisation" class="form-input" placeholder="Banque, Assurance">
           </div>
           <button class="form-submit" type="submit">Envoyer ma demande</button>
           <p class="form-note">Sans engagement · Réponse sous 24h · romainbrubach&#64;socratech.fr</p>
@@ -542,10 +535,12 @@ Commencer le diagnostic
           <div class="form-success-title">Message envoyé !</div>
           <p class="form-success-text">Merci pour votre message. L'équipe Socratech vous répondra sous 24h ouvrées.<br/><br/>En attendant, lancez le diagnostic gratuit :</p>
           <br/>
-          href="/runriskv2/index.html"
+          <a href="https://romainsocratech.github.io/runriskv3/" class="btn-primary" target="_blank">→ Commencer le diagnostic</a>
         </div>
       </div>
     </div>
+
+    </form>
 
     <div class="engagements-grid">
       <div class="engagement"><div class="engagement-num">01</div><div class="engagement-title">⏱ Réponse sous 24h</div><p class="engagement-text">Cadrage rapide, pas de blabla. Échange de 30 minutes pour comprendre votre contexte.</p></div>
@@ -582,6 +577,17 @@ function submitForm() {
     alert('Merci de remplir les champs obligatoires (Nom, Fonction, Organisation, Email).');
     return;
   }
-  const mailto = `mailto:romainbrubach@socratech.fr?subject=Demande RUN Risk - ${encodeURIComponent(org)}&body=Nom: ${encodeURIComponent(name)}%0AFonction: ${encodeURIComponent(role)}%0AOrganisation: ${encodeURIComponent(org)}%0AEmail: ${encodeURIComponent(email)}%0ATéléphone: ${encodeURIComponent(document.getElementById('f-phone').value)}%0AContexte: ${encodeURIComponent(document.getElementById('f-context').value)}%0AMessage: ${encodeURIComponent(document.getElementById('f-message').value)}`;
-  window.location.href = mailto;
-  d
+  const subject = encodeURIComponent('Demande RUN Risk - ' + org);
+  const body = encodeURIComponent(
+    'Nom: ' + name + '\n' +
+    'Fonction: ' + role + '\n' +
+    'Organisation: ' + org + '\n' +
+    'Email: ' + email
+  );
+  window.location.href = 'mailto:romainbrubach@socratech.fr?subject=' + subject + '&body=' + body;
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
